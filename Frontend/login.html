@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MindWell | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <strong>MindWell</strong>
+      <small>AI Mental Health Analyzer</small>
+    </div>
+    <div class="live-status">
+      <span class="live-dot online"></span>
+      <span>Secure login</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero auth-hero">
+      <article>
+        <p class="tag">Welcome</p>
+        <h1>Sign in to open your role-specific portal.</h1>
+        <p class="lead">Students get personal prediction and history. Teachers get class-level dashboard and monitoring.</p>
+      </article>
+      <aside class="hero-card">
+        <h3>Login</h3>
+        <p class="hint">Select role, then authenticate.</p>
+        <div class="role-select">
+          <button id="roleStudent" class="role-btn active" type="button">Student</button>
+          <button id="roleTeacher" class="role-btn" type="button">Teacher</button>
+        </div>
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="student1 or teacher1" />
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter password" />
+        <button id="loginBtn" class="primary" type="button">Sign in</button>
+        <p id="loginMessage" class="small-message"></p>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+  <script src="login.js"></script>
+</body>
+</html>

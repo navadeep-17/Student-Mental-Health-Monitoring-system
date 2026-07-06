@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MindWell | Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <strong>MindWell</strong>
+      <small>Student Portal</small>
+    </div>
+    <nav class="nav">
+      <a href="#predict">Predict</a>
+      <a href="#insights">Insights</a>
+      <a href="#support">Support</a>
+    </nav>
+    <div class="live-status" id="liveStatus">
+      <span class="live-dot" id="liveDot"></span>
+      <span id="liveText">Checking server...</span>
+    </div>
+    <div class="action-row">
+      <div class="session-pill" id="sessionPill">Loading session...</div>
+      <button id="logoutBtn" class="ghost" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section" id="predict">
+      <div class="section-head">
+        <h2>Prediction Studio</h2>
+        <p>Real-time stress prediction with explainable AI.</p>
+      </div>
+      <div class="layout-two">
+        <article class="panel">
+          <div class="mentor-card">
+            <span class="meta-text">Assigned mentor</span>
+            <h3 id="mentorName">Loading...</h3>
+            <p id="mentorMeta">Fetching your teacher assignment.</p>
+          </div>
+          <div class="panel-head-row">
+            <h3>Student Inputs</h3>
+            <button id="resetBtn" class="ghost" type="button">Reset</button>
+          </div>
+          <div class="field-grid" id="sliderContainer"></div>
+          <label for="moodInput">How are you feeling today?</label>
+          <input id="moodInput" type="text" placeholder="e.g. overwhelmed before exams" />
+          <div class="action-row">
+            <button id="predictBtn" class="primary" type="button">Predict Stress Level</button>
+            <button id="loadHistoryBtn" class="ghost" type="button">Load My History</button>
+          </div>
+          <p id="predictError" class="error" hidden></p>
+        </article>
+
+        <article class="panel">
+          <h3>Result + Explainable AI</h3>
+          <div class="risk-summary">
+            <span id="riskBadge" class="risk neutral">Awaiting prediction</span>
+            <h4 id="riskLabel">No prediction yet</h4>
+            <p id="riskInsight">Run a prediction to view insights.</p>
+          </div>
+          <div class="meter-wrap">
+            <div class="meter-labels">
+              <span>Stress Risk Meter</span>
+              <strong id="riskMeterText">0%</strong>
+            </div>
+            <div class="meter-track"><span id="riskMeterFill"></span></div>
+          </div>
+          <div class="confidence">
+            <div class="bar-row"><span>Low</span><div class="bar"><i id="lowBar"></i></div><strong id="lowProb">--</strong></div>
+            <div class="bar-row"><span>Medium</span><div class="bar"><i id="mediumBar"></i></div><strong id="mediumProb">--</strong></div>
+            <div class="bar-row"><span>High</span><div class="bar"><i id="highBar"></i></div><strong id="highProb">--</strong></div>
+          </div>
+          <div class="explain-grid">
+            <article><span>Mental Health</span><strong id="mentalHealth">--</strong></article>
+            <article><span>Academic Load</span><strong id="academicLoad">--</strong></article>
+            <article><span>Lifestyle Risk</span><strong id="lifestyleRisk">--</strong></article>
+            <article><span>Social Support</span><strong id="socialSupport">--</strong></article>
+          </div>
+          <div class="notes">
+            <p><b>Suggestion:</b> <span id="suggestionText">No suggestion yet.</span></p>
+            <p><b>Personalized Insight:</b> <span id="insightText">No insight yet.</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="insights">
+      <div class="section-head">
+        <h2>Insights Timeline</h2>
+        <p class="meta-text">Auto-refresh every 20s | Last sync: <span id="historyLastSync">--</span></p>
+      </div>
+      <div class="layout-two">
+        <article class="panel">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Time</th><th>Label</th><th>High Prob</th><th>Mood</th><th>Stress Score</th></tr>
+              </thead>
+              <tbody id="historyTable"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel">
+          <h3>Live Risk Trend</h3>
+          <svg id="historyTrend" viewBox="0 0 420 170" class="trend-chart"></svg>
+          <div class="trend-legend"><span><i class="legend-dot high"></i> High Risk Probability</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="support">
+      <div class="section-head">
+        <h2>AI Support Chat</h2>
+      </div>
+      <article class="panel chat-panel">
+        <div id="chatLog" class="chat-log"></div>
+        <div class="chat-row">
+          <input id="chatInput" type="text" placeholder="Type: I am stressed before exam" />
+          <button id="chatSendBtn" class="primary" type="button">Send</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+  <script src="student.js"></script>
+</body>
+</html>
